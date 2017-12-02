@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class HomeBaseController : MonoBehaviour
 {
     public GameObject WalkerPrefab;
-    public GameObject WalkerContainerRef;
     public GameObject TargetRef;
 
     public int SpawnAmount;
@@ -16,10 +15,13 @@ public class HomeBaseController : MonoBehaviour
     private int _spawned;
     private float _spawnTimer;
     private float _spawnInterval;
+    private GameObject _walkerContainerRef;
 
     void Awake()
     {
         _spawnInterval = TotalSpawnTime / SpawnAmount;
+        _walkerContainerRef = new GameObject();
+        _walkerContainerRef.name = "WalkerContainer";
     }
 
     void Start() 
@@ -44,7 +46,7 @@ public class HomeBaseController : MonoBehaviour
     private void Spawn()
     {
         var walker = Instantiate(WalkerPrefab);
-        walker.transform.parent = WalkerContainerRef.transform;
+        walker.transform.parent = _walkerContainerRef.transform;
 
         var walkerScript = walker.GetComponent<WalkerController>();
         walkerScript.HomeBaseReference = gameObject;
