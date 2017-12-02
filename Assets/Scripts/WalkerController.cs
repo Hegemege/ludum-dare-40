@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class WalkerController : MonoBehaviour
+public class WalkerController : LimitToWorld
 {
     public float MovementSpeed;
     public float TurningAngle;
@@ -13,36 +13,54 @@ public class WalkerController : MonoBehaviour
     [HideInInspector]
     public GameObject TargetReference;
 
+    [HideInInspector]
+    public bool RandomStartDirection;
+
     private Vector3 _targetDirection;
 
     private float _randomDirectionTimer;
     private float _randomDirectionTimerMax;
     private float _randomDirectionWeight;
+    private float _randomSpeedWeight;
+
+    private float _currentMovementSpeed;
+    private float _movementSpeedTarget;
+
+    private bool _spawned;
 
     void Awake()
     {
-        transform.forward = Random.onUnitSphere;
-        transform.forward = new Vector3(transform.forward.x, 0f, transform.forward.z);
-        transform.forward.Normalize();
-
-        _targetDirection = transform.forward;
-
-        Debug.DrawRay(transform.position, _targetDirection, Color.red, 5f);
-
-        // Initialize random direction change timer;
-        ResetRandomDirectionTimer();
+        _currentMovementSpeed = MovementSpeed;
     }
 
     /// <summary>
     /// Called from the spawner
     /// </summary>
-    void Init()
+    public void Init()
     {
         transform.localPosition = HomeBaseReference.transform.localPosition;
+
+        if (RandomStartDirection)
+        {
+            transform.forward = Random.onUnitSphere;
+            transform.forward = new Vector3(transform.forward.x, 0f, transform.forward.z);
+            transform.forward.Normalize();
+        }
+        else
+        {
+            transform.forward = HomeBaseReference.transform.forward;
+        }
+
+        _targetDirection = transform.forward;
+
+        ResetRandomDirectionTimer();
+        _spawned = true;
     }
     
     void FixedUpdate()
     {
+        if (!_spawned) return;
+
         var dt = Time.fixedDeltaTime;
         // Adjust direction slightly
         // Bias slightly towards _targetDirection
@@ -62,9 +80,11 @@ public class WalkerController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, TurningSmoothing);
 
         // Move
-        var effectiveMovementSpeed = MovementSpeed;
+        _currentMovementSpeed = Mathf.Lerp(_currentMovementSpeed, _movementSpeedTarget, 0.01f);
 
-        transform.localPosition += transform.forward * effectiveMovementSpeed * dt;
+        transform.localPosition += transform.forward * _currentMovementSpeed * dt;
+
+        base.FixedUpdate();
     }
 
     private void ResetRandomDirectionTimer()
@@ -72,5 +92,7 @@ public class WalkerController : MonoBehaviour
         _randomDirectionTimer = 0f;
         _randomDirectionTimerMax = Random.Range(0.25f, 0.5f);
         _randomDirectionWeight = Random.Range(-1f, 1f);
+        _randomSpeedWeight = Random.Range(0.1f, 1f);
+        _movementSpeedTarget = _randomSpeedWeight * MovementSpeed;
     }
 }

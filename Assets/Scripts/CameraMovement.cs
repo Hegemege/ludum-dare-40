@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class CameraMovement : MonoBehaviour 
+public class CameraMovement : LimitToWorld
 {
     void FixedUpdate()
     {
@@ -27,24 +27,6 @@ public class CameraMovement : MonoBehaviour
             transform.localPosition += new Vector3(0f, 0f, 1f) * dt;
         }
 
-        if (transform.localPosition.x > 4.5f)
-        {
-            transform.localPosition -= 9f * Vector3.right;
-        }
-
-        if (transform.localPosition.x < -4.5f)
-        {
-            transform.localPosition += 9f * Vector3.right;
-        }
-
-        if (transform.localPosition.z > 8f)
-        {
-            transform.localPosition -= 16f * Vector3.forward;
-        }
-
-        if (transform.localPosition.z < -8f)
-        {
-            transform.localPosition += 16f * Vector3.forward;
-        }
+        base.FixedUpdate();
     }
 }

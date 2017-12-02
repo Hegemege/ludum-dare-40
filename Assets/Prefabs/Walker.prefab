@@ -124,11 +124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0c7305c921c5c42be70851d170825f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 0.5
+  MovementSpeed: 1
   TurningAngle: 125
   TurningSmoothing: 0.025
   HomeBaseReference: {fileID: 0}
   TargetReference: {fileID: 0}
+  RandomStartDirection: 0
 --- !u!135 &135811301195439490
 SphereCollider:
   m_ObjectHideFlags: 1

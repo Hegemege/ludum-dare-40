@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4914839514504674}
   - component: {fileID: 135218440539713514}
+  - component: {fileID: 114272411591673448}
   m_Layer: 0
   m_Name: HomeBase
   m_TagString: Untagged
@@ -64,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1993562233829094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.14, y: 0.55, z: -3.72}
+  m_LocalPosition: {x: 0.34, y: 0.55, z: -4.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4237918445417914}
@@ -112,6 +113,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1055622845340880}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114272411591673448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993562233829094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff8e946f801d8846b299985663ead3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WalkerPrefab: {fileID: 1018891064155694, guid: a46bd7f26e2d6a04289f739eb623c172,
+    type: 2}
+  WalkerContainerRef: {fileID: 0}
+  TargetRef: {fileID: 0}
+  SpawnAmount: 30
+  RandomStartDirection: 0
+  TotalSpawnTime: 2
+  SpawnMovementSpeed: 1
 --- !u!135 &135218440539713514
 SphereCollider:
   m_ObjectHideFlags: 1
