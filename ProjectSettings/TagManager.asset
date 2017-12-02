@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Paintable
+  - Target
+  - DirectionArrow
   layers:
   - Default
   - TransparentFX
@@ -15,10 +17,10 @@ TagManager:
   - 
   - 
   - NonGameplay
-  - 
-  - 
-  - 
-  - 
+  - DirectionArrows
+  - Walker
+  - WalkerObstacle
+  - Target
   - 
   - 
   - 

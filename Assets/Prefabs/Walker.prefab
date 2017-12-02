@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4090123430458204}
   - component: {fileID: 135811301195439490}
   - component: {fileID: 114814302519750412}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Walker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4203956208951126}
   - component: {fileID: 33487166158802150}
   - component: {fileID: 23171461617280912}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 1
-  TurningAngle: 125
+  TurningAngle: 75
   TurningSmoothing: 0.025
   HomeBaseReference: {fileID: 0}
   TargetReference: {fileID: 0}

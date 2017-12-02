@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4278738153810692}
   - component: {fileID: 33770015219146598}
   - component: {fileID: 23356837118446396}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4770095334739956}
   - component: {fileID: 136102640090449772}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1557917318975530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.46, y: 0.55, z: 3.916}
+  m_LocalPosition: {x: 0.3, y: 0.55, z: 3.916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4278738153810692}

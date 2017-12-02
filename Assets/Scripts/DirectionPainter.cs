@@ -71,7 +71,7 @@ public class DirectionPainter : MonoBehaviour
         // If we have dragged too far, manual release
         if (_lastPaintedArrow != null)
         {
-            if (Vector3.Distance(position, _lastPaintedArrow.transform.position) > 2f * Interval)
+            if (Vector3.Distance(position, _lastPaintedArrow.transform.position) > 3f * Interval)
             {
                 SendRelease(position);
             }

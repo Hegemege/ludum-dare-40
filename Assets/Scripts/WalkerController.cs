@@ -39,6 +39,7 @@ public class WalkerController : LimitToWorld
     public void Init()
     {
         transform.localPosition = HomeBaseReference.transform.localPosition;
+        transform.localPosition = new Vector3(transform.localPosition.x, 0.01f, transform.localPosition.z);
 
         if (RandomStartDirection)
         {
@@ -94,5 +95,13 @@ public class WalkerController : LimitToWorld
         _randomDirectionWeight = Random.Range(-1f, 1f);
         _randomSpeedWeight = Random.Range(0.1f, 1f);
         _movementSpeedTarget = _randomSpeedWeight * MovementSpeed;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DirectionArrow"))
+        {
+            _targetDirection = other.transform.parent.forward;
+        }
     }
 }

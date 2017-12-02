@@ -3197,6 +3197,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1383075465658890, guid: c0293e22a5c85924c8a16e8f05052629, type: 2}
+      propertyPath: m_TagString
+      value: Target
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0293e22a5c85924c8a16e8f05052629, type: 2}
   m_IsPrefabParent: 0
@@ -5335,7 +5339,7 @@ Prefab:
     - target: {fileID: 114272411591673448, guid: fceb41ec4b7b8bd44975f16b6707c738,
         type: 2}
       propertyPath: SpawnMovementSpeed
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fceb41ec4b7b8bd44975f16b6707c738, type: 2}
