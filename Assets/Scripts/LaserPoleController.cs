@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class LaserPoleController : DuplicateWorld
 {
+    public GameObject LaserBeamPrefab;
+
     public GameObject FrontLaserAnchors;
     public GameObject BackLaserAnchors;
 
@@ -15,9 +17,36 @@ public class LaserPoleController : DuplicateWorld
 
     protected bool _spawned;
 
+    private List<LineRenderer> FrontLaserLineRenderers;
+    private List<LineRenderer> BackLaserLineRenderers;
+
     void Awake()
     {
         base.Awake();
+
+        // Create laser beam objects
+        FrontLaserLineRenderers = new List<LineRenderer>();
+        BackLaserLineRenderers = new List<LineRenderer>();
+
+        foreach (Transform anchor in FrontLaserAnchors.transform)
+        {
+            var laserBeam = Instantiate(LaserBeamPrefab);
+            laserBeam.transform.parent = anchor;
+            laserBeam.transform.localPosition = Vector3.zero;
+            laserBeam.transform.localRotation = Quaternion.identity;
+            var lr = laserBeam.GetComponentInChildren<LineRenderer>();
+            FrontLaserLineRenderers.Add(lr);
+        }
+
+        foreach (Transform anchor in BackLaserAnchors.transform)
+        {
+            var laserBeam = Instantiate(LaserBeamPrefab);
+            laserBeam.transform.parent = anchor;
+            laserBeam.transform.localPosition = Vector3.zero;
+            laserBeam.transform.localRotation = Quaternion.identity;
+            var lr = laserBeam.GetComponentInChildren<LineRenderer>();
+            BackLaserLineRenderers.Add(lr);
+        }
     }
 
     protected override void InitialSpawn()
@@ -91,6 +120,12 @@ public class LaserPoleController : DuplicateWorld
     void CommonFixedUpdate()
     {
         // Both master and mirror
+
+        // Update laser existence
+        FrontLaserAnchors.SetActive(EnableFrontLasers);
+        BackLaserAnchors.SetActive(EnableBackLasers);
+
+        // Update laser lengths
     }
 
     void MirrorFixedUpdate()
