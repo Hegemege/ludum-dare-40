@@ -7,8 +7,6 @@ public class DirectionPainter : MonoBehaviour
     public GameObject ArrowPrefab;
     public float Interval;
 
-    public int MaximumStorage;
-
     public int Storage;
 
     private List<GameObject> _paintedArrows;
@@ -17,7 +15,7 @@ public class DirectionPainter : MonoBehaviour
 
     void Awake()
     {
-        Storage = MaximumStorage;
+        Storage = GameManager.Instance.ArrowStorage;
         _arrowContainer = new GameObject();
         _arrowContainer.name = "PaintedArrowContainer";
         _paintedArrows = new List<GameObject>();
@@ -33,13 +31,15 @@ public class DirectionPainter : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(1))
         {
+            if (GameManager.Instance.LevelCleared) return;
+
             Reset();
         }
     }
 
     public void Reset()
     {
-        Storage = MaximumStorage;
+        Storage = GameManager.Instance.ArrowStorage;
         foreach (var arrow in _paintedArrows)
         {
             Destroy(arrow);
@@ -50,6 +50,7 @@ public class DirectionPainter : MonoBehaviour
     public void SendClickDrag(Vector3 position)
     {
         if (Storage <= 0) return;
+        if (GameManager.Instance.LevelCleared) return;
 
         if (_lastPaintedArrow != null && Vector3.Distance(_lastPaintedArrow.transform.position, position) < Interval)
         {

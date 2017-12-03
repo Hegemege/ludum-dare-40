@@ -35,6 +35,8 @@ public class WalkerController : LimitToWorld
     void Awake()
     {
         _currentMovementSpeed = MovementSpeed;
+
+        GameManager.Instance.AliveWalkers += 1;
     }
 
     /// <summary>
@@ -129,6 +131,8 @@ public class WalkerController : LimitToWorld
             particles.transform.position = transform.position;
             Destroy(particles, 3f);
 
+            GameManager.Instance.AliveWalkers -= 1;
+
             Destroy(gameObject);
         }
         else if (other.CompareTag("Target"))
@@ -140,12 +144,9 @@ public class WalkerController : LimitToWorld
 
             GameManager.Instance.WalkerHitTarget();
 
+            GameManager.Instance.AliveWalkers -= 1;
+
             Destroy(gameObject);
         }
-    }
-
-    void OnControllerColliderHit(ControllerColliderHit other)
-    {
-        
     }
 }

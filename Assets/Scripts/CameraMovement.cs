@@ -52,21 +52,13 @@ public class CameraMovement : LimitToWorld
 
         dt *= 5f;
 
-        if (Input.GetKey("a"))
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f)
         {
-            transform.localPosition += new Vector3(0f, 0f, -1f) * dt;
+            transform.localPosition += new Vector3(0f, 0f, 1f) * dt * Input.GetAxis("Horizontal");
         }
-        if (Input.GetKey("w"))
+        if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f)
         {
-            transform.localPosition += new Vector3(-1f, 0f, 0f) * dt;
-        }
-        if (Input.GetKey("s"))
-        {
-            transform.localPosition += new Vector3(1f, 0f, 0f) * dt;
-        }
-        if (Input.GetKey("d"))
-        {
-            transform.localPosition += new Vector3(0f, 0f, 1f) * dt;
+            transform.localPosition += new Vector3(-1f, 0f, 0f) * dt * Input.GetAxis("Vertical");
         }
 
         base.FixedUpdate();

@@ -53,11 +53,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HomeBaseRef: {fileID: 0}
   TargetRef: {fileID: 0}
+  ArrowStorage: 50
   RequiredAmount: 50
   SpawnAmount: 20
   RandomDirection: 0
   TotalSpawnTime: 2
-  SpawnBursts: 5
+  SpawnBursts: 1000
   BurstInterval: 3
   SpawnMovementSpeed: 2
+  MaximumWalkers: 50
+  AliveWalkers: 0
+  LevelTimer: 0
   Collected: 0
+  LevelCleared: 0

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject HomeBaseRef;
     public GameObject TargetRef;
 
+    public int ArrowStorage;
     public int RequiredAmount;
     public int SpawnAmount;
     public bool RandomDirection;
@@ -25,11 +26,18 @@ public class GameManager : MonoBehaviour
     public float BurstInterval;
     public float SpawnMovementSpeed;
 
+    public int MaximumWalkers;
+    [HideInInspector]
+    public int AliveWalkers;
+
     [HideInInspector]
     public float LevelTimer;
 
     [HideInInspector]
     public int Collected;
+
+    [HideInInspector]
+    public bool LevelCleared;
 
     void Awake() 
     {
@@ -67,7 +75,7 @@ public class GameManager : MonoBehaviour
 
     private void LevelComplete()
     {
-        Debug.Log("Level Complete");
+        LevelCleared = true;
     }
 
     public void WalkerHitTarget()
