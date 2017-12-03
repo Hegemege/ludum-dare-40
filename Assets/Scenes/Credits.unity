@@ -1372,6 +1372,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -35.867
       objectReference: {fileID: 0}
+    - target: {fileID: 82230176884698762, guid: fceb41ec4b7b8bd44975f16b6707c738,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114156512558904068, guid: fceb41ec4b7b8bd44975f16b6707c738, type: 2}
     - {fileID: 114272411591673448, guid: fceb41ec4b7b8bd44975f16b6707c738, type: 2}
@@ -2873,6 +2878,11 @@ Prefab:
         type: 2}
       propertyPath: RandomDirection
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152950240933018, guid: dc9c70b6a45f50d4a9d82eca063e4ba7,
+        type: 2}
+      propertyPath: SuppressEffectSounds
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc9c70b6a45f50d4a9d82eca063e4ba7, type: 2}
@@ -6165,6 +6175,8 @@ MonoBehaviour:
   SpawnMovementSpeed: 1
   EnforceWorldLimit: 0
   MaxRotationSpeed: 400
+  SpawnAudioClips:
+  - {fileID: 8300000, guid: c013b02de3d41de4586a96e43dcb4e95, type: 3}
 --- !u!4 &1978567085 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4939938154931200, guid: e6f229a698707714e8f1210c8d4bb73b,

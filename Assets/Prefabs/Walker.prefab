@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 54258636017242930}
   - component: {fileID: 135558854173751698}
   - component: {fileID: 114814302519750412}
+  - component: {fileID: 82979166939138320}
   m_Layer: 10
   m_Name: Walker
   m_TagString: Untagged
@@ -129,6 +130,86 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!82 &82979166939138320
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1018891064155694}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114814302519750412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0c7305c921c5c42be70851d170825f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Limit: 1
   MovementSpeed: 1
   TurningAngle: 75
   TurningSmoothing: 0.025
@@ -149,10 +231,11 @@ MonoBehaviour:
   WalkerObstacleLayer:
     serializedVersion: 2
     m_Bits: 2048
-  DeathParticles: {fileID: 1767119111707408, guid: 4fd39f8e5f2081d4ebe522c99f146c8a,
-    type: 2}
-  TargetParticles: {fileID: 1121209419761474, guid: b7afd362bd961454b9cdd102d7c38599,
-    type: 2}
+  BurnAudioClips:
+  - {fileID: 8300000, guid: c649d5922dd22c1418c33023d589e9ca, type: 3}
+  - {fileID: 8300000, guid: 8dda7db2df4a2a945b314ec36afcaf56, type: 3}
+  - {fileID: 8300000, guid: 41cc253409a42ad4f9d868edc316e8cc, type: 3}
+  - {fileID: 8300000, guid: 38af424fa1d9edd4d92f91d2f43b2f03, type: 3}
 --- !u!135 &135558854173751698
 SphereCollider:
   m_ObjectHideFlags: 1

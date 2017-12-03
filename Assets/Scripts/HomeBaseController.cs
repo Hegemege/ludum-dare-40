@@ -28,8 +28,13 @@ public class HomeBaseController : MonoBehaviour
 
     private WalkerPool _walkerPool;
 
+    public List<AudioClip> SpawnAudioClips;
+    private AudioSource _spawnAudioSource;
+
     void Awake()
     {
+        _spawnAudioSource = GetComponent<AudioSource>();
+
         _spawnInterval = TotalSpawnTime / SpawnAmount;
         _walkerContainerRef = new GameObject();
         _walkerContainerRef.name = "WalkerContainer";
@@ -88,6 +93,13 @@ public class HomeBaseController : MonoBehaviour
         if (walker == null)
         {
             return;
+        }
+
+        if (!GameManager.Instance.SuppressEffectSounds)
+        {
+            var randomClip = SpawnAudioClips[Random.Range(0, SpawnAudioClips.Count)];
+            _spawnAudioSource.clip = randomClip;
+            _spawnAudioSource.Play();
         }
 
         walker.transform.parent = _walkerContainerRef.transform;

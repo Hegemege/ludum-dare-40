@@ -43,10 +43,14 @@ public class GameManager : MonoBehaviour
     public bool LevelCleared;
     private float _levelClearedTimer;
 
-    public bool LevelLoadingDone;
+    private AudioSource _collectAudio;
 
-    void Awake() 
+    public bool LevelLoadingDone;
+    public bool SuppressEffectSounds;
+
+    void Awake()
     {
+        _collectAudio = GetComponent<AudioSource>();
         _instance = this;
 
         var homeBaseScript = HomeBaseRef.GetComponent<HomeBaseController>();
@@ -99,6 +103,13 @@ public class GameManager : MonoBehaviour
 
     public void WalkerHitTarget()
     {
+        if (GameManager.Instance.LevelCleared) return;
+        if (!GameManager.Instance.SuppressEffectSounds)
+        {
+            _collectAudio.Play();
+        }
+
+        
         Collected += 1;
     }
 

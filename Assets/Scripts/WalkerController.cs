@@ -29,11 +29,15 @@ public class WalkerController : LimitToWorld
     private float _movementSpeedTarget;
 
     private bool _spawned;
+    private bool _freeze;
     private bool _reinitialize;
+
+    public List<AudioClip> BurnAudioClips;
+    private AudioSource _burnAudioSource;
 
     void Awake()
     {
-        
+        _burnAudioSource = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -63,11 +67,12 @@ public class WalkerController : LimitToWorld
         ResetRandomDirectionTimer();
         _spawned = true;
         _reinitialize = false;
+        _freeze = false;
     }
     
     protected override void FixedUpdate()
     {
-        if (_reinitialize)
+        if (_reinitialize && !_freeze)
         {
             Init();
             return;
@@ -142,6 +147,14 @@ public class WalkerController : LimitToWorld
 
             GameManager.Instance.AliveWalkers -= 1;
 
+            // Burn audio
+            if (!GameManager.Instance.LevelCleared && !GameManager.Instance.SuppressEffectSounds)
+            {
+                var randomClip = BurnAudioClips[Random.Range(0, BurnAudioClips.Count)];
+                _burnAudioSource.clip = randomClip;
+                _burnAudioSource.Play();
+            }
+
             ReturnToPool();
         }
         else if (other.CompareTag("Target"))
@@ -163,6 +176,14 @@ public class WalkerController : LimitToWorld
     {
         _reinitialize = true;
         transform.position = Vector3.up * -1f;
+        _freeze = true;
+        StartCoroutine(SetInactive());
+    }
+
+    private IEnumerator SetInactive()
+    {
+        yield return new WaitForSeconds(1f);
+        _freeze = false;
         gameObject.SetActive(false);
     }
 }
