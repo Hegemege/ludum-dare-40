@@ -21,12 +21,12 @@ GameObject:
   - component: {fileID: 4355379733175192}
   - component: {fileID: 33838874528455458}
   - component: {fileID: 23289005294299812}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1140736315681762
 GameObject:
@@ -38,12 +38,12 @@ GameObject:
   - component: {fileID: 4184612850441778}
   - component: {fileID: 33558032280774640}
   - component: {fileID: 23384196791377276}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1174748255356628
 GameObject:
@@ -55,12 +55,12 @@ GameObject:
   - component: {fileID: 4433377298763432}
   - component: {fileID: 33117280988804174}
   - component: {fileID: 23692612772906318}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1182762361881568
 GameObject:
@@ -72,12 +72,12 @@ GameObject:
   - component: {fileID: 4300461497597704}
   - component: {fileID: 33272781100754492}
   - component: {fileID: 23572130260313574}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1212449060454218
 GameObject:
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4215273878385236}
   - component: {fileID: 65606296217398388}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4261048669675482}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,12 +120,12 @@ GameObject:
   - component: {fileID: 4958812357272796}
   - component: {fileID: 33527225576825968}
   - component: {fileID: 23766880026286320}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1438124194843028
 GameObject:
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4254140491408394}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tree2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,12 +152,12 @@ GameObject:
   - component: {fileID: 4106662983892306}
   - component: {fileID: 33652499630451640}
   - component: {fileID: 23371062324301578}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1954432131899470
 GameObject:
@@ -169,12 +169,12 @@ GameObject:
   - component: {fileID: 4999851511077762}
   - component: {fileID: 33930755306975664}
   - component: {fileID: 23175444264209360}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4106662983892306
 Transform:
@@ -221,15 +221,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1438124194843028}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.872303, y: -0.47941047, z: -6.0482435}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.000099182114}
+  m_LocalPosition: {x: -2.7400002, y: -0.47941047, z: 0.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4261048669675482}
   - {fileID: 4215273878385236}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 179.98901, z: 0}
 --- !u!4 &4261048669675482
 Transform:
   m_ObjectHideFlags: 1
@@ -612,5 +612,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3255092, y: 1.6011372, z: 0.3605873}
-  m_Center: {x: 0.003929317, y: 0.7804413, z: -0.009319216}
+  m_Size: {x: 0.16394019, y: 1.6011372, z: 0.15653163}
+  m_Center: {x: -0.005967237, y: 0.7804413, z: 0.0025640056}

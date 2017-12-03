@@ -7,6 +7,7 @@ TagManager:
   - Paintable
   - Target
   - DirectionArrow
+  - LaserBeam
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Walker
   - WalkerObstacle
   - Target
-  - 
+  - LaserBeams
   - 
   - 
   - 

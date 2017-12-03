@@ -16,6 +16,8 @@ public class WalkerController : LimitToWorld
     [HideInInspector]
     public bool RandomStartDirection;
 
+    public LayerMask WalkerObstacleLayer;
+
     private Vector3 _targetDirection;
 
     private float _randomDirectionTimer;
@@ -28,9 +30,12 @@ public class WalkerController : LimitToWorld
 
     private bool _spawned;
 
+    private CharacterController _cc;
+
     void Awake()
     {
         _currentMovementSpeed = MovementSpeed;
+        _cc = GetComponent<CharacterController>();
     }
 
     /// <summary>
@@ -58,7 +63,7 @@ public class WalkerController : LimitToWorld
         _spawned = true;
     }
     
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
         if (!_spawned) return;
 
@@ -83,7 +88,19 @@ public class WalkerController : LimitToWorld
         // Move
         _currentMovementSpeed = Mathf.Lerp(_currentMovementSpeed, _movementSpeedTarget, 0.01f);
 
+        // Spherecast forward, if there is something, turn back
+        Ray forwardRay = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+        if (Physics.SphereCast(forwardRay, 0.1f, out hit, _currentMovementSpeed * dt, WalkerObstacleLayer))
+        {
+            var newForwad = Vector3.Reflect(transform.forward, hit.normal);
+            transform.rotation = Quaternion.LookRotation(newForwad, Vector3.up);
+            _targetDirection = transform.forward;
+        }
+
         transform.localPosition += transform.forward * _currentMovementSpeed * dt;
+
+        // TODO: if stuck in object, kill
 
         base.FixedUpdate();
     }
@@ -103,5 +120,14 @@ public class WalkerController : LimitToWorld
         {
             _targetDirection = other.transform.parent.forward;
         }
+        else if (other.CompareTag("LaserBeam"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit other)
+    {
+        
     }
 }

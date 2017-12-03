@@ -19,6 +19,9 @@ public class LaserPoleController : DuplicateWorld
     private List<LineRenderer> FrontLaserLineRenderers;
     private List<LineRenderer> BackLaserLineRenderers;
 
+    private BoxCollider _frontCollider;
+    private BoxCollider _backCollider;
+
     void Awake()
     {
         Init();
@@ -47,7 +50,11 @@ public class LaserPoleController : DuplicateWorld
             BackLaserLineRenderers.Add(lr);
         }
 
-        var frontCollider = FrontLaserAnchors.AddComponent<BoxCollider>();
+        _frontCollider = FrontLaserAnchors.AddComponent<BoxCollider>();
+        _backCollider = BackLaserAnchors.AddComponent<BoxCollider>();
+
+        _frontCollider.isTrigger = true;
+        _backCollider.isTrigger = true;
     }
 
     void Update() 
@@ -88,6 +95,13 @@ public class LaserPoleController : DuplicateWorld
             var end = Vector3.forward * BackLaserLength;
             lr.SetPosition(1, end);
         }
+
+        // Update laser hitbox
+        _frontCollider.center = Vector3.forward * FrontLaserLength / 2f;
+        _frontCollider.size = new Vector3(0.05f, 1f, FrontLaserLength);
+
+        _backCollider.center = Vector3.forward * BackLaserLength / 2f;
+        _backCollider.size = new Vector3(0.05f, 1f, BackLaserLength);
     }
 
     void MirrorFixedUpdate()

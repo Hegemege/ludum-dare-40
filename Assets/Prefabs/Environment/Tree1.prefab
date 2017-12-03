@@ -21,12 +21,12 @@ GameObject:
   - component: {fileID: 4269356192697762}
   - component: {fileID: 33683399288480910}
   - component: {fileID: 23390884030056948}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1553883094335758
 GameObject:
@@ -38,12 +38,12 @@ GameObject:
   - component: {fileID: 4515219996647458}
   - component: {fileID: 33677744564781684}
   - component: {fileID: 23273260272957058}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1575413296658346
 GameObject:
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4238015397244554}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4270136208726316}
   - component: {fileID: 65662930709374838}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4749242378390656}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tree1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,12 +101,12 @@ GameObject:
   - component: {fileID: 4892624523940590}
   - component: {fileID: 33716138679452960}
   - component: {fileID: 23498095079480652}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1984916870755432
 GameObject:
@@ -118,12 +118,12 @@ GameObject:
   - component: {fileID: 4535031771737086}
   - component: {fileID: 33799534383939540}
   - component: {fileID: 23319849083868832}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4238015397244554
 Transform:
@@ -200,15 +200,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847583093294230}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.2035613, y: -0.5040943, z: -6.439249}
+  m_LocalRotation: {x: -0, y: 0.70726967, z: -0, w: -0.7069439}
+  m_LocalPosition: {x: 3.4453404, y: -0.50409436, z: -6.189501}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4238015397244554}
   - {fileID: 4270136208726316}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 269.974, z: 0}
 --- !u!4 &4892624523940590
 Transform:
   m_ObjectHideFlags: 1
@@ -396,5 +396,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3255092, y: 1.6011372, z: 0.3605873}
-  m_Center: {x: 0.003929317, y: 0.7804413, z: -0.009319216}
+  m_Size: {x: 0.1516164, y: 1.6011372, z: 0.14055076}
+  m_Center: {x: -0.0015448107, y: 0.7804413, z: -0.0015361197}

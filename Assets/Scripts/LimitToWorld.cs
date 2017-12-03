@@ -14,7 +14,7 @@ public class LimitToWorld : MonoBehaviour
         
     }
     
-    protected void FixedUpdate() 
+    protected virtual void FixedUpdate() 
     {
         if (transform.localPosition.x > 4.5f)
         {

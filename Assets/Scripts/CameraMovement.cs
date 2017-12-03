@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CameraMovement : LimitToWorld
 {
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
         var dt = Time.fixedDeltaTime;
 
