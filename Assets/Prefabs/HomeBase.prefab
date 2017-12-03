@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4237918445417914}
   - component: {fileID: 33562646087161634}
   - component: {fileID: 23071992754671000}
+  - component: {fileID: 114711204952371466}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -126,12 +127,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkerPrefab: {fileID: 1018891064155694, guid: a46bd7f26e2d6a04289f739eb623c172,
     type: 2}
-  WalkerContainerRef: {fileID: 0}
   TargetRef: {fileID: 0}
   SpawnAmount: 30
   RandomStartDirection: 0
   TotalSpawnTime: 2
+  SpawnBursts: 0
+  BurstInterval: 0
   SpawnMovementSpeed: 1
+  MaxRotationSpeed: 1000
+--- !u!114 &114711204952371466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1055622845340880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be309a326efbd14eba16dec6f411491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationSpeed: 90
+  RotationChangeInterval: 3
 --- !u!135 &135218440539713514
 SphereCollider:
   m_ObjectHideFlags: 1

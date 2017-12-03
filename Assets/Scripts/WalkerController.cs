@@ -17,6 +17,7 @@ public class WalkerController : LimitToWorld
     public bool RandomStartDirection;
 
     public LayerMask WalkerObstacleLayer;
+    public GameObject DeathParticles;
 
     private Vector3 _targetDirection;
 
@@ -94,6 +95,8 @@ public class WalkerController : LimitToWorld
         if (Physics.SphereCast(forwardRay, 0.1f, out hit, _currentMovementSpeed * dt, WalkerObstacleLayer))
         {
             var newForwad = Vector3.Reflect(transform.forward, hit.normal);
+            newForwad.y = 0f;
+            newForwad.Normalize();
             transform.rotation = Quaternion.LookRotation(newForwad, Vector3.up);
             _targetDirection = transform.forward;
         }
@@ -122,6 +125,10 @@ public class WalkerController : LimitToWorld
         }
         else if (other.CompareTag("LaserBeam"))
         {
+            var particles = Instantiate(DeathParticles);
+            particles.transform.position = transform.position;
+            Destroy(particles, 3f);
+
             Destroy(gameObject);
         }
     }

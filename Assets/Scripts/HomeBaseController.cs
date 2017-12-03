@@ -28,11 +28,15 @@ public class HomeBaseController : MonoBehaviour
     private float _spawnInterval;
     private GameObject _walkerContainerRef;
 
+    public float MaxRotationSpeed;
+    private Random3DRotation _beaconRotator;
+
     void Awake()
     {
         _spawnInterval = TotalSpawnTime / SpawnAmount;
         _walkerContainerRef = new GameObject();
         _walkerContainerRef.name = "WalkerContainer";
+        _beaconRotator = GetComponentInChildren<Random3DRotation>();
 
         _burstTimer = 0f;
         _burstsDone = 0;
@@ -60,11 +64,17 @@ public class HomeBaseController : MonoBehaviour
         if (_spawned >= SpawnAmount * _burstsDone && _burstsDone < SpawnBursts)
         {
             _burstTimer += dt;
+            _beaconRotator.RotationSpeed = Mathf.Lerp(0f, MaxRotationSpeed, _burstTimer / BurstInterval);
+
             if (_burstTimer > BurstInterval)
             {
                 _burstsDone += 1;
                 _burstTimer = 0f;
             }
+        }
+        else
+        {
+            _beaconRotator.RotationSpeed *= 0.95f;
         }
     }
 
