@@ -5,11 +5,12 @@ using System.Collections.Generic;
 public class LaserGenerator : MonoBehaviour
 {
     public GameObject LaserPolePrefab;
-    public List<GameObject> LaserMarkers;
 
-    void Awake() 
+    void Awake()
     {
-        foreach (var marker in LaserMarkers)
+        var allMarkers = GameObject.FindGameObjectsWithTag("LaserPoleMarker");
+
+        foreach (var marker in allMarkers)
         {
             var master = Instantiate(LaserPolePrefab);
             master.transform.position = marker.transform.position;

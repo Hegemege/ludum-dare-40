@@ -151,6 +151,8 @@ MonoBehaviour:
     m_Bits: 2048
   DeathParticles: {fileID: 1767119111707408, guid: 4fd39f8e5f2081d4ebe522c99f146c8a,
     type: 2}
+  TargetParticles: {fileID: 1121209419761474, guid: b7afd362bd961454b9cdd102d7c38599,
+    type: 2}
 --- !u!135 &135558854173751698
 SphereCollider:
   m_ObjectHideFlags: 1

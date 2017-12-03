@@ -53,10 +53,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HomeBaseRef: {fileID: 0}
   TargetRef: {fileID: 0}
-  RequiredRatio: 0.5
+  RequiredAmount: 50
   SpawnAmount: 20
   RandomDirection: 0
   TotalSpawnTime: 2
   SpawnBursts: 5
   BurstInterval: 3
   SpawnMovementSpeed: 2
+  Collected: 0

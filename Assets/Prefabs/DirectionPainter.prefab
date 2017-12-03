@@ -54,4 +54,5 @@ MonoBehaviour:
   ArrowPrefab: {fileID: 1129738285543552, guid: e0c1757d19eb9724786b20355caa676b,
     type: 2}
   Interval: 0.3
-  MaximumStorage: 10
+  MaximumStorage: 50
+  Storage: 0

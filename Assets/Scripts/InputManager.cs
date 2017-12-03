@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class InputManager : MonoBehaviour
 
     private void CheckAllInput()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         // Handle native touch events
         for (var i = 0; i < Input.touchCount; i++)
         {

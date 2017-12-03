@@ -17,13 +17,19 @@ public class GameManager : MonoBehaviour
     public GameObject HomeBaseRef;
     public GameObject TargetRef;
 
-    public float RequiredRatio;
+    public int RequiredAmount;
     public int SpawnAmount;
     public bool RandomDirection;
     public float TotalSpawnTime;
     public int SpawnBursts;
     public float BurstInterval;
     public float SpawnMovementSpeed;
+
+    [HideInInspector]
+    public float LevelTimer;
+
+    [HideInInspector]
+    public int Collected;
 
     void Awake() 
     {
@@ -44,7 +50,32 @@ public class GameManager : MonoBehaviour
         
     }
     
-    void Update() 
+    void Update()
+    {
+        var dt = Time.deltaTime;
+
+        if (Collected < RequiredAmount)
+        {
+            LevelTimer += dt;
+        }
+        else
+        {
+            Collected = RequiredAmount;
+            LevelComplete();
+        }
+    }
+
+    private void LevelComplete()
+    {
+        Debug.Log("Level Complete");
+    }
+
+    public void WalkerHitTarget()
+    {
+        Collected += 1;
+    }
+
+    public void WalkerSpawned()
     {
         
     }

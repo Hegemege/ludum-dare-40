@@ -18,6 +18,7 @@ public class WalkerController : LimitToWorld
 
     public LayerMask WalkerObstacleLayer;
     public GameObject DeathParticles;
+    public GameObject TargetParticles;
 
     private Vector3 _targetDirection;
 
@@ -31,12 +32,9 @@ public class WalkerController : LimitToWorld
 
     private bool _spawned;
 
-    private CharacterController _cc;
-
     void Awake()
     {
         _currentMovementSpeed = MovementSpeed;
-        _cc = GetComponent<CharacterController>();
     }
 
     /// <summary>
@@ -121,13 +119,26 @@ public class WalkerController : LimitToWorld
     {
         if (other.CompareTag("DirectionArrow"))
         {
+            // Realign
             _targetDirection = other.transform.parent.forward;
         }
         else if (other.CompareTag("LaserBeam"))
         {
+            // Die
             var particles = Instantiate(DeathParticles);
             particles.transform.position = transform.position;
             Destroy(particles, 3f);
+
+            Destroy(gameObject);
+        }
+        else if (other.CompareTag("Target"))
+        {
+            // Spawn particles and destroy, inform game manager
+            var particles = Instantiate(TargetParticles);
+            particles.transform.position = transform.position + Vector3.up * 0.1f;
+            Destroy(particles, 3f);
+
+            GameManager.Instance.WalkerHitTarget();
 
             Destroy(gameObject);
         }

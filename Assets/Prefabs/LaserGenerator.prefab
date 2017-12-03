@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1061231151174066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.024244308, y: 0.036238194, z: -0.011891227}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,5 +53,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LaserPolePrefab: {fileID: 1252682434791426, guid: f7a4502eb0534034693d867f18472bdb,
     type: 2}
-  LaserMarkers:
-  - {fileID: 0}
