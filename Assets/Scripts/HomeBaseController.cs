@@ -8,18 +8,13 @@ public class HomeBaseController : MonoBehaviour
     [HideInInspector]
     public GameObject TargetRef;
 
-    [HideInInspector]
     public int SpawnAmount;
-    [HideInInspector]
     public bool RandomStartDirection;
-    [HideInInspector]
     public float TotalSpawnTime;
-    [HideInInspector]
     public int SpawnBursts;
-    [HideInInspector]
     public float BurstInterval;
-    [HideInInspector]
     public float SpawnMovementSpeed;
+    public bool EnforceWorldLimit = true;
 
     private int _burstsDone;
     private float _burstTimer;
@@ -104,6 +99,7 @@ public class HomeBaseController : MonoBehaviour
             walker.SetActive(true);
 
             var walkerScript = walker.GetComponent<WalkerController>();
+            walkerScript.Limit = EnforceWorldLimit;
             walkerScript.HomeBaseReference = gameObject;
             walkerScript.TargetReference = TargetRef;
             walkerScript.RandomStartDirection = RandomStartDirection;

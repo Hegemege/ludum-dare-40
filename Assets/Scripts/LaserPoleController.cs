@@ -12,14 +12,10 @@ public class LaserPoleController : DuplicateWorld
     public GameObject FrontLaserAnchors;
     public GameObject BackLaserAnchors;
 
-    [HideInInspector]
     public bool FrontLaserEnabled;
-    [HideInInspector]
     public bool BackLaserEnabled;
 
-    [HideInInspector]
     public float FrontLaserLength;
-    [HideInInspector]
     public float BackLaserLength;
 
     protected float _effectiveFrontLaserLength;

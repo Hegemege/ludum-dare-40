@@ -151,6 +151,7 @@ MonoBehaviour:
   SpawnBursts: 0
   BurstInterval: 0
   SpawnMovementSpeed: 1
+  EnforceWorldLimit: 1
   MaxRotationSpeed: 1000
 --- !u!114 &114711204952371466
 MonoBehaviour:
