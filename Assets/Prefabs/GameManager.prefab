@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300f289039013bc47a5df240b178505d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NextScene: Level1b
   HomeBaseRef: {fileID: 0}
   TargetRef: {fileID: 0}
   ArrowStorage: 50

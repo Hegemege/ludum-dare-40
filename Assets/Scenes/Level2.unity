@@ -894,6 +894,11 @@ Prefab:
       propertyPath: TargetRef
       value: 
       objectReference: {fileID: 1171830513}
+    - target: {fileID: 114152950240933018, guid: dc9c70b6a45f50d4a9d82eca063e4ba7,
+        type: 2}
+      propertyPath: NextScene
+      value: Level3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc9c70b6a45f50d4a9d82eca063e4ba7, type: 2}
   m_IsPrefabParent: 0
@@ -4948,7 +4953,7 @@ Prefab:
     - target: {fileID: 114753860679166314, guid: ed794fb05e363584c8abaa1ccc6fc207,
         type: 2}
       propertyPath: RotationSpeed
-      value: 60
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 114753860679166314, guid: ed794fb05e363584c8abaa1ccc6fc207,
         type: 2}
@@ -4959,6 +4964,11 @@ Prefab:
         type: 2}
       propertyPath: BackLaserLength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114753860679166314, guid: ed794fb05e363584c8abaa1ccc6fc207,
+        type: 2}
+      propertyPath: FrontLaserEnabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed794fb05e363584c8abaa1ccc6fc207, type: 2}

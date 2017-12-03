@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public string NextScene;
+
     //Singleton
     private static GameManager _instance;
     public static GameManager Instance
@@ -76,6 +79,7 @@ public class GameManager : MonoBehaviour
     private void LevelComplete()
     {
         LevelCleared = true;
+        SceneManager.LoadSceneAsync(NextScene);
     }
 
     public void WalkerHitTarget()
