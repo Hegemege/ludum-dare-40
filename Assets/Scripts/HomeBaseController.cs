@@ -49,6 +49,7 @@ public class HomeBaseController : MonoBehaviour
     void Update()
     {
         if (GameManager.Instance.LevelCleared) return;
+        if (!GameManager.Instance.LevelLoadingDone) return;
 
         if (GameManager.Instance.AliveWalkers >= GameManager.Instance.MaximumWalkers) return;
 

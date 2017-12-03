@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-public class MainMenuUIController : MonoBehaviour 
+public class CreditsUIController : MonoBehaviour 
 {
-    void Awake()
+    void Awake() 
     {
         GameManager.Instance.LevelLoadingDone = true;
     }
@@ -20,9 +20,9 @@ public class MainMenuUIController : MonoBehaviour
         
     }
 
-    public void PlayButtonClicked()
+    public void BackToMenuClick()
     {
         System.GC.Collect();
-        SceneManager.LoadSceneAsync("Level1");
+        SceneManager.LoadScene("MainMenu");
     }
 }

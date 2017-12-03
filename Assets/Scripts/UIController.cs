@@ -13,6 +13,10 @@ public class UIController : MonoBehaviour
     public Text CollectedText;
     public Text RemainingText;
 
+    public Image FadeIn;
+    public Text FadeInText;
+    private float _fadeInTimer;
+
     public GameObject PainterReference;
     private DirectionPainter _painter;
 
@@ -20,6 +24,8 @@ public class UIController : MonoBehaviour
 
     void Awake()
     {
+        FadeIn.enabled = true;
+
         _painter = PainterReference.GetComponent<DirectionPainter>();
 
         // Generate string cahces, because ToString generates garbage
@@ -42,6 +48,49 @@ public class UIController : MonoBehaviour
     void Update()
     {
         UpdateTexts();
+
+        var dt = Time.deltaTime;
+
+        _fadeInTimer += dt;
+
+        var ratio = 1f - Mathf.Clamp(_fadeInTimer / 3f, 0f, 1f);
+        FadeIn.color = new Color(0f, 0f, 0f, ratio);
+
+        if (_fadeInTimer < 1f)
+        {
+            var textRatio = Mathf.Clamp(_fadeInTimer / 1f, 0f, 1f);
+            FadeInText.color = new Color(1f, 1f, 1f, textRatio);
+        }
+        else
+        {
+            var textRatio = 1f - Mathf.Clamp((_fadeInTimer - 1f) / 3f, 0f, 1f);
+            FadeInText.color = new Color(1f, 1f, 1f, textRatio);
+        }
+
+        
+
+        if (_fadeInTimer > 4f)
+        {
+            FadeIn.enabled = false;
+            FadeInText.enabled = false;
+            _fadeInTimer = 6f; //hackety hack
+            GameManager.Instance.LevelLoadingDone = true;
+        }
+
+        if (GameManager.Instance.LevelCleared && _fadeInTimer > 5f)
+        {
+            _fadeInTimer = 0f;
+        }
+
+        if (GameManager.Instance.LevelCleared)
+        {
+            FadeIn.enabled = true;
+            FadeInText.enabled = true;
+
+            ratio = Mathf.Clamp(_fadeInTimer / 1.5f, 0f, 1f);
+            FadeIn.color = new Color(0f, 0f, 0f, ratio);
+            FadeInText.color = new Color(1f, 1f, 1f, 0f);
+        }
     }
 
     private void UpdateTexts()

@@ -41,6 +41,9 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public bool LevelCleared;
+    private float _levelClearedTimer;
+
+    public bool LevelLoadingDone;
 
     void Awake() 
     {
@@ -65,6 +68,8 @@ public class GameManager : MonoBehaviour
     {
         var dt = Time.deltaTime;
 
+        if (!LevelLoadingDone) return;
+
         if (Collected < RequiredAmount)
         {
             LevelTimer += dt;
@@ -74,13 +79,22 @@ public class GameManager : MonoBehaviour
             Collected = RequiredAmount;
             LevelComplete();
         }
+
+        if (LevelCleared)
+        {
+            _levelClearedTimer += dt;
+            if (_levelClearedTimer > 3f)
+            {
+                _levelClearedTimer = 0f;
+                SceneManager.LoadScene(NextScene);
+            }
+        }
     }
 
     private void LevelComplete()
     {
         LevelCleared = true;
         System.GC.Collect();
-        SceneManager.LoadSceneAsync(NextScene);
     }
 
     public void WalkerHitTarget()
