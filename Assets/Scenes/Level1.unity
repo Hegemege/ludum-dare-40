@@ -3056,31 +3056,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114868279926025638, guid: 118a8ce4fd22ae142ad8f244c48f0e7d,
-        type: 2}
-      propertyPath: PainterReference
-      value: 
-      objectReference: {fileID: 884248910}
     - target: {fileID: 224747843483446210, guid: 118a8ce4fd22ae142ad8f244c48f0e7d,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 548.455
+      value: 2098.194
       objectReference: {fileID: 0}
     - target: {fileID: 224193774700753680, guid: 118a8ce4fd22ae142ad8f244c48f0e7d,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 530
+      value: 521
       objectReference: {fileID: 0}
     - target: {fileID: 224193774700753680, guid: 118a8ce4fd22ae142ad8f244c48f0e7d,
         type: 2}
       propertyPath: m_LocalPosition.y
       value: 298
       objectReference: {fileID: 0}
-    - target: {fileID: 224193774700753680, guid: 118a8ce4fd22ae142ad8f244c48f0e7d,
+    - target: {fileID: 114868279926025638, guid: 118a8ce4fd22ae142ad8f244c48f0e7d,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: PainterReference
+      value: 
+      objectReference: {fileID: 884248910}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 118a8ce4fd22ae142ad8f244c48f0e7d, type: 2}
   m_IsPrefabParent: 0
