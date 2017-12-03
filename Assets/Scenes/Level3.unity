@@ -894,6 +894,11 @@ Prefab:
       propertyPath: NextScene
       value: Level4
       objectReference: {fileID: 0}
+    - target: {fileID: 114152950240933018, guid: dc9c70b6a45f50d4a9d82eca063e4ba7,
+        type: 2}
+      propertyPath: SpawnMovementSpeed
+      value: 1.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc9c70b6a45f50d4a9d82eca063e4ba7, type: 2}
   m_IsPrefabParent: 0

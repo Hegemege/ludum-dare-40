@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4772857849207088}
   - component: {fileID: 114077398525262936}
+  - component: {fileID: 114604358292148482}
   m_Layer: 0
   m_Name: DirectionPainter
   m_TagString: Untagged
@@ -51,8 +52,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8113f751e2b220498ebc5142311c82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ArrowPrefab: {fileID: 1129738285543552, guid: e0c1757d19eb9724786b20355caa676b,
-    type: 2}
   Interval: 0.3
-  MaximumStorage: 50
   Storage: 0
+--- !u!114 &114604358292148482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1959069824640554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442414bf255ffbf4d857894e6a9aa2b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PooledObjectPrefab: {fileID: 1129738285543552, guid: e0c1757d19eb9724786b20355caa676b,
+    type: 2}
+  WillGrow: 1
+  Pool: []

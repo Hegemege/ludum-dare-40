@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class DirectionPainter : MonoBehaviour
 {
-    public GameObject ArrowPrefab;
     public float Interval;
 
     public int Storage;
@@ -13,13 +12,15 @@ public class DirectionPainter : MonoBehaviour
     private GameObject _lastPaintedArrow;
     private GameObject _arrowContainer;
 
+    private ArrowPool _arrowPool;
+
     void Awake()
     {
         Storage = GameManager.Instance.ArrowStorage;
         _arrowContainer = new GameObject();
         _arrowContainer.name = "PaintedArrowContainer";
         _paintedArrows = new List<GameObject>();
-
+        _arrowPool = GetComponent<ArrowPool>();
     }
 
     void Start() 
@@ -42,7 +43,7 @@ public class DirectionPainter : MonoBehaviour
         Storage = GameManager.Instance.ArrowStorage;
         foreach (var arrow in _paintedArrows)
         {
-            Destroy(arrow);
+            arrow.SetActive(false);
         }
         _paintedArrows.Clear();
     }
@@ -92,7 +93,8 @@ public class DirectionPainter : MonoBehaviour
 
         // We can place a new arrow
         Storage -= 1;
-        var newArrow = Instantiate(ArrowPrefab);
+        var newArrow = _arrowPool.GetPooledObject(); //Instantiate(ArrowPrefab);
+        newArrow.SetActive(true);
         newArrow.transform.localPosition = wantedPosition;
         newArrow.transform.parent = _arrowContainer.transform;
 
