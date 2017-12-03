@@ -31,6 +31,8 @@ public class HomeBaseController : MonoBehaviour
     public float MaxRotationSpeed;
     private Random3DRotation _beaconRotator;
 
+    private WalkerPool _walkerPool;
+
     void Awake()
     {
         _spawnInterval = TotalSpawnTime / SpawnAmount;
@@ -40,6 +42,8 @@ public class HomeBaseController : MonoBehaviour
 
         _burstTimer = 0f;
         _burstsDone = 0;
+
+        _walkerPool = GetComponent<WalkerPool>();
     }
 
     void Start() 
@@ -84,14 +88,27 @@ public class HomeBaseController : MonoBehaviour
 
     private void Spawn()
     {
-        var walker = Instantiate(WalkerPrefab);
-        walker.transform.parent = _walkerContainerRef.transform;
+        var walker = _walkerPool.GetPooledObject();// Instantiate(WalkerPrefab);
+        if (walker == null)
+        {
+            return;
+        }
 
-        var walkerScript = walker.GetComponent<WalkerController>();
-        walkerScript.HomeBaseReference = gameObject;
-        walkerScript.TargetReference = TargetRef;
-        walkerScript.RandomStartDirection = RandomStartDirection;
-        walkerScript.MovementSpeed *= SpawnMovementSpeed;
-        walkerScript.Init();
+        walker.transform.parent = _walkerContainerRef.transform;
+        if (!walker.activeInHierarchy && walker.transform.localPosition.y > -2f)
+        {
+            walker.SetActive(true);
+        }
+        else
+        {
+            walker.SetActive(true);
+
+            var walkerScript = walker.GetComponent<WalkerController>();
+            walkerScript.HomeBaseReference = gameObject;
+            walkerScript.TargetReference = TargetRef;
+            walkerScript.RandomStartDirection = RandomStartDirection;
+            walkerScript.MovementSpeed *= SpawnMovementSpeed;
+            walkerScript.Init();
+        }
     }
 }

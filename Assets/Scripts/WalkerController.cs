@@ -17,8 +17,6 @@ public class WalkerController : LimitToWorld
     public bool RandomStartDirection;
 
     public LayerMask WalkerObstacleLayer;
-    public GameObject DeathParticles;
-    public GameObject TargetParticles;
 
     private Vector3 _targetDirection;
 
@@ -31,12 +29,11 @@ public class WalkerController : LimitToWorld
     private float _movementSpeedTarget;
 
     private bool _spawned;
+    private bool _reinitialize;
 
     void Awake()
     {
-        _currentMovementSpeed = MovementSpeed;
-
-        GameManager.Instance.AliveWalkers += 1;
+        
     }
 
     /// <summary>
@@ -44,6 +41,9 @@ public class WalkerController : LimitToWorld
     /// </summary>
     public void Init()
     {
+        _currentMovementSpeed = MovementSpeed;
+        GameManager.Instance.AliveWalkers += 1;
+
         transform.localPosition = HomeBaseReference.transform.localPosition;
         transform.localPosition = new Vector3(transform.localPosition.x, 0.01f, transform.localPosition.z);
 
@@ -62,10 +62,17 @@ public class WalkerController : LimitToWorld
 
         ResetRandomDirectionTimer();
         _spawned = true;
+        _reinitialize = false;
     }
     
     protected override void FixedUpdate()
     {
+        if (_reinitialize)
+        {
+            Init();
+            return;
+        }
+
         if (!_spawned) return;
 
         var dt = Time.fixedDeltaTime;
@@ -119,6 +126,8 @@ public class WalkerController : LimitToWorld
 
     void OnTriggerEnter(Collider other)
     {
+        if (_reinitialize) return;
+
         if (other.CompareTag("DirectionArrow"))
         {
             // Realign
@@ -127,26 +136,33 @@ public class WalkerController : LimitToWorld
         else if (other.CompareTag("LaserBeam"))
         {
             // Die
-            var particles = Instantiate(DeathParticles);
+            var particles = DeathParticlePool.Instance.GetPooledObject(); //Instantiate(DeathParticles);
+            particles.SetActive(true);
             particles.transform.position = transform.position;
-            Destroy(particles, 3f);
 
             GameManager.Instance.AliveWalkers -= 1;
 
-            Destroy(gameObject);
+            ReturnToPool();
         }
         else if (other.CompareTag("Target"))
         {
             // Spawn particles and destroy, inform game manager
-            var particles = Instantiate(TargetParticles);
+            var particles = TargetParticlePool.Instance.GetPooledObject(); //Instantiate(TargetParticles);
+            particles.SetActive(true);
             particles.transform.position = transform.position + Vector3.up * 0.1f;
-            Destroy(particles, 3f);
 
             GameManager.Instance.WalkerHitTarget();
 
             GameManager.Instance.AliveWalkers -= 1;
 
-            Destroy(gameObject);
+            ReturnToPool();
         }
+    }
+
+    private void ReturnToPool()
+    {
+        _reinitialize = true;
+        transform.position = Vector3.up * -1f;
+        gameObject.SetActive(false);
     }
 }

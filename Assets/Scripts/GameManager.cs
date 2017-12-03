@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
     private void LevelComplete()
     {
         LevelCleared = true;
+        System.GC.Collect();
         SceneManager.LoadSceneAsync(NextScene);
     }
 
