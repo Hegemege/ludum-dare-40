@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class LaserPoleController : DuplicateWorld
 {
     public GameObject LaserBeamPrefab;
+    public GameObject SelfPrefab;
 
     public GameObject FrontLaserAnchors;
     public GameObject BackLaserAnchors;
@@ -15,14 +16,12 @@ public class LaserPoleController : DuplicateWorld
     public float FrontLaserLength;
     public float BackLaserLength;
 
-    protected bool _spawned;
-
     private List<LineRenderer> FrontLaserLineRenderers;
     private List<LineRenderer> BackLaserLineRenderers;
 
     void Awake()
     {
-        base.Awake();
+        Init();
 
         // Create laser beam objects
         FrontLaserLineRenderers = new List<LineRenderer>();
@@ -47,61 +46,13 @@ public class LaserPoleController : DuplicateWorld
             var lr = laserBeam.GetComponentInChildren<LineRenderer>();
             BackLaserLineRenderers.Add(lr);
         }
-    }
 
-    protected override void InitialSpawn()
-    {
-        // If the object does not have a master yet
-        if (Master != null) return;
-
-        // Create a mirror container;
-        var mirrorContainer = new GameObject();
-        mirrorContainer.name = "MirrorContainer";
-
-        // Create the mirrors
-        var topMirror = Instantiate(gameObject);
-        var bottomMirror = Instantiate(gameObject);
-        var leftMirror = Instantiate(gameObject);
-        var rightMirror = Instantiate(gameObject);
-        var topLeftMirror = Instantiate(gameObject);
-        var topRightMirror = Instantiate(gameObject);
-        var bottomLeftMirror = Instantiate(gameObject);
-        var bottomRightMirror = Instantiate(gameObject);
-
-        Mirrors.Add(topMirror);
-        Mirrors.Add(bottomMirror);
-        Mirrors.Add(leftMirror);
-        Mirrors.Add(rightMirror);
-        Mirrors.Add(topLeftMirror);
-        Mirrors.Add(topRightMirror);
-        Mirrors.Add(bottomLeftMirror);
-        Mirrors.Add(bottomRightMirror);
-
-        foreach (var mirror in Mirrors)
-        {
-            var laserPoleScript = mirror.GetComponent<LaserPoleController>();
-            laserPoleScript.Master = this;
-            laserPoleScript.gameObject.transform.parent = mirrorContainer.transform;
-        }
-
-        topMirror.transform.localPosition = transform.localPosition - 9f * Vector3.right;
-        bottomMirror.transform.localPosition = transform.localPosition + 9f * Vector3.right;
-        leftMirror.transform.localPosition = transform.localPosition - 16f * Vector3.forward;
-        rightMirror.transform.localPosition = transform.localPosition + 16f * Vector3.forward;
-
-        topLeftMirror.transform.localPosition = transform.localPosition - 9f * Vector3.right - 16f * Vector3.forward;
-        topRightMirror.transform.localPosition = transform.localPosition - 9f * Vector3.right + 16f * Vector3.forward;
-        bottomLeftMirror.transform.localPosition = transform.localPosition + 9f * Vector3.right - 16f * Vector3.forward;
-        bottomRightMirror.transform.localPosition = transform.localPosition + 9f * Vector3.right + 16f * Vector3.forward;
+        var frontCollider = FrontLaserAnchors.AddComponent<BoxCollider>();
     }
 
     void Update() 
     {
-        if (!_spawned)
-        {
-            _spawned = true;
-            InitialSpawn();
-        }
+
     }
     
     void FixedUpdate()
@@ -126,6 +77,17 @@ public class LaserPoleController : DuplicateWorld
         BackLaserAnchors.SetActive(EnableBackLasers);
 
         // Update laser lengths
+        foreach (var lr in FrontLaserLineRenderers)
+        {
+            var end = Vector3.forward * FrontLaserLength;
+            lr.SetPosition(1, end);
+        }
+
+        foreach (var lr in BackLaserLineRenderers)
+        {
+            var end = Vector3.forward * BackLaserLength;
+            lr.SetPosition(1, end);
+        }
     }
 
     void MirrorFixedUpdate()
@@ -140,7 +102,7 @@ public class LaserPoleController : DuplicateWorld
     {
         if (Master == null) return;
 
-        var localMaster = (LaserPoleController) Master;
+        var localMaster = (LaserPoleController) MasterScript;
 
         // Copy all values from master to this
         EnableBackLasers = localMaster.EnableBackLasers;

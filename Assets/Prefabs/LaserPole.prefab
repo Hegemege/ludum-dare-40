@@ -41,21 +41,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1168289101058602
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4227454364873802}
-  m_Layer: 0
-  m_Name: Mirrors
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1252682434791426
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,19 +234,6 @@ Transform:
   m_Father: {fileID: 4983814178357636}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4227454364873802
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1168289101058602}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4966696087449688}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4280637977578882
 Transform:
   m_ObjectHideFlags: 1
@@ -269,7 +241,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486336144802338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.266, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4966696087449688}
@@ -336,18 +308,17 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1252682434791426}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23, y: 0, z: 4.65}
+  m_LocalRotation: {x: -0, y: -0.42058098, z: -0, w: 0.907255}
+  m_LocalPosition: {x: 0.4, y: 0, z: 4.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4983814178357636}
   - {fileID: 4280637977578882}
   - {fileID: 4583037505023012}
   - {fileID: 4985663410077796}
-  - {fileID: 4227454364873802}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -49.743004, z: 0}
 --- !u!4 &4983814178357636
 Transform:
   m_ObjectHideFlags: 1
@@ -446,12 +417,14 @@ MonoBehaviour:
   Master: {fileID: 0}
   LaserBeamPrefab: {fileID: 1935992474815838, guid: 8657f308a6c2dc743b6cdc4c0b9a0d41,
     type: 2}
+  SelfPrefab: {fileID: 1252682434791426}
   FrontLaserAnchors: {fileID: 1852252483733744}
   BackLaserAnchors: {fileID: 1503598829780900}
   EnableFrontLasers: 1
   EnableBackLasers: 1
   FrontLaserLength: 4
   BackLaserLength: 4
+  ReadyToSpawn: 0
 --- !u!136 &136598985752915396
 CapsuleCollider:
   m_ObjectHideFlags: 1

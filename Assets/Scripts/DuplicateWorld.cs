@@ -6,13 +6,14 @@ public class DuplicateWorld : MonoBehaviour
 {
     // If a master object exists, this object has no interaction or it's own will, it will copy all relevant properties from the Master
     [HideInInspector]
-    public DuplicateWorld Master;
+    public GameObject Master;
+    public DuplicateWorld MasterScript;
 
-    protected List<GameObject> Mirrors;
+    //protected List<GameObject> Mirrors;
 
-    protected void Awake()
+    protected void Init()
     {
-        Mirrors = new List<GameObject>();
+        //Mirrors = new List<GameObject>();
     }
 
     protected virtual void InitialSpawn()
