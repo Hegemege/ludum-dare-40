@@ -50,6 +50,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4966696087449688}
   - component: {fileID: 114108222012706532}
+  - component: {fileID: 114410699293877890}
   m_Layer: 13
   m_Name: LaserPole
   m_TagString: Untagged
@@ -416,15 +417,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Master: {fileID: 0}
   MasterScript: {fileID: 0}
+  LaserCollisionMask:
+    serializedVersion: 2
+    m_Bits: 2048
   LaserBeamPrefab: {fileID: 1935992474815838, guid: 8657f308a6c2dc743b6cdc4c0b9a0d41,
     type: 2}
   SelfPrefab: {fileID: 1252682434791426}
   FrontLaserAnchors: {fileID: 1852252483733744}
   BackLaserAnchors: {fileID: 1503598829780900}
-  EnableFrontLasers: 1
-  EnableBackLasers: 1
+  FrontLaserEnabled: 0
+  BackLaserEnabled: 0
   FrontLaserLength: 4
   BackLaserLength: 4
+--- !u!114 &114410699293877890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1252682434791426}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22edf8fa4ddf0e4c9bb13d3c198e550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Axis: {x: 0, y: 1, z: 0}
+  RotationSpeed: 0
 --- !u!136 &136598985752915396
 CapsuleCollider:
   m_ObjectHideFlags: 1

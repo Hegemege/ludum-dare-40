@@ -7,6 +7,7 @@ public class DuplicateWorld : MonoBehaviour
     // If a master object exists, this object has no interaction or it's own will, it will copy all relevant properties from the Master
     [HideInInspector]
     public GameObject Master;
+    [HideInInspector]
     public DuplicateWorld MasterScript;
 
     //protected List<GameObject> Mirrors;

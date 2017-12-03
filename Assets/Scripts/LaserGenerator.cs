@@ -15,6 +15,24 @@ public class LaserGenerator : MonoBehaviour
             master.transform.position = marker.transform.position;
             master.transform.rotation = marker.transform.rotation;
 
+            // Pass parameters from primer to master
+            var masterScript = master.GetComponent<LaserPoleController>();
+            var primerScript = marker.GetComponent<LaserPolePrimer>();
+
+            masterScript.FrontLaserLength = primerScript.FrontLaserLength;
+            masterScript.BackLaserLength = primerScript.BackLaserLength;
+            masterScript.FrontLaserEnabled = primerScript.FrontLaserEnabled;
+            masterScript.BackLaserEnabled = primerScript.BackLaserEnabled;
+
+            // Pass the rotation component parameters if set
+
+            var axisRotator = master.GetComponent<RotateAroundAxis>();
+            if (primerScript.Rotating)
+            {
+                axisRotator.enabled = true;
+                axisRotator.RotationSpeed = primerScript.RotationSpeed;
+            }
+
             Destroy(marker);
 
             // Create a mirror container;
@@ -46,7 +64,7 @@ public class LaserGenerator : MonoBehaviour
             {
                 var laserPoleScript = mirror.GetComponent<LaserPoleController>();
                 laserPoleScript.Master = master;
-                laserPoleScript.MasterScript = master.GetComponent<LaserPoleController>(); // Instead of this, maybe fixes the bug?
+                laserPoleScript.MasterScript = masterScript;
 
                 laserPoleScript.gameObject.transform.parent = mirrorContainer.transform;
             }

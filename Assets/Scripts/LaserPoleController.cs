@@ -4,17 +4,26 @@ using System.Collections.Generic;
 
 public class LaserPoleController : DuplicateWorld
 {
+    public LayerMask LaserCollisionMask;
+
     public GameObject LaserBeamPrefab;
     public GameObject SelfPrefab;
 
     public GameObject FrontLaserAnchors;
     public GameObject BackLaserAnchors;
 
-    public bool EnableFrontLasers;
-    public bool EnableBackLasers;
+    [HideInInspector]
+    public bool FrontLaserEnabled;
+    [HideInInspector]
+    public bool BackLaserEnabled;
 
+    [HideInInspector]
     public float FrontLaserLength;
+    [HideInInspector]
     public float BackLaserLength;
+
+    protected float _effectiveFrontLaserLength;
+    protected float _effectiveBackLaserLength;
 
     private List<LineRenderer> FrontLaserLineRenderers;
     private List<LineRenderer> BackLaserLineRenderers;
@@ -73,6 +82,25 @@ public class LaserPoleController : DuplicateWorld
         }
 
         // Master only 
+
+        // Raycast laser length, cannot check raycasts on mirrors and it would be identical anyways
+        var frontSource = new Ray(transform.position + Vector3.up * 0.2f + FrontLaserAnchors.transform.forward * 0.2f, FrontLaserAnchors.transform.forward);
+        var backSource = new Ray(transform.position + Vector3.up * 0.2f + BackLaserAnchors.transform.forward * 0.2f, BackLaserAnchors.transform.forward);
+        RaycastHit frontHit;
+        RaycastHit backHit;
+
+        _effectiveFrontLaserLength = FrontLaserLength;
+        _effectiveBackLaserLength = BackLaserLength;
+
+        if (Physics.Raycast(frontSource.origin, frontSource.direction, out frontHit, FrontLaserLength, LaserCollisionMask))
+        {
+            _effectiveFrontLaserLength = Vector3.Distance(frontHit.point, transform.position + Vector3.up * 0.2f);
+        }
+
+        if (Physics.Raycast(backSource.origin, backSource.direction, out backHit, FrontLaserLength, LaserCollisionMask))
+        {
+            _effectiveBackLaserLength = Vector3.Distance(backHit.point, transform.position + Vector3.up * 0.2f);
+        }
     }
 
     void CommonFixedUpdate()
@@ -80,28 +108,26 @@ public class LaserPoleController : DuplicateWorld
         // Both master and mirror
 
         // Update laser existence
-        FrontLaserAnchors.SetActive(EnableFrontLasers);
-        BackLaserAnchors.SetActive(EnableBackLasers);
+        FrontLaserAnchors.SetActive(FrontLaserEnabled);
+        BackLaserAnchors.SetActive(BackLaserEnabled);
 
         // Update laser lengths
         foreach (var lr in FrontLaserLineRenderers)
         {
-            var end = Vector3.forward * FrontLaserLength;
-            lr.SetPosition(1, end);
+            lr.SetPosition(1, Vector3.forward * _effectiveFrontLaserLength);
         }
 
         foreach (var lr in BackLaserLineRenderers)
         {
-            var end = Vector3.forward * BackLaserLength;
-            lr.SetPosition(1, end);
+            lr.SetPosition(1, Vector3.forward * _effectiveBackLaserLength);
         }
 
         // Update laser hitbox
-        _frontCollider.center = Vector3.forward * FrontLaserLength / 2f;
-        _frontCollider.size = new Vector3(0.05f, 1f, FrontLaserLength);
+        _frontCollider.center = Vector3.forward * _effectiveFrontLaserLength / 2f;
+        _frontCollider.size = new Vector3(0.05f, 1f, _effectiveFrontLaserLength);
 
-        _backCollider.center = Vector3.forward * BackLaserLength / 2f;
-        _backCollider.size = new Vector3(0.05f, 1f, BackLaserLength);
+        _backCollider.center = Vector3.forward * _effectiveBackLaserLength / 2f;
+        _backCollider.size = new Vector3(0.05f, 1f, _effectiveBackLaserLength);
     }
 
     void MirrorFixedUpdate()
@@ -119,10 +145,13 @@ public class LaserPoleController : DuplicateWorld
         var localMaster = (LaserPoleController) MasterScript;
 
         // Copy all values from master to this
-        EnableBackLasers = localMaster.EnableBackLasers;
-        EnableFrontLasers = localMaster.EnableFrontLasers;
+        FrontLaserEnabled = localMaster.FrontLaserEnabled;
+        BackLaserEnabled = localMaster.BackLaserEnabled;
         FrontLaserLength = localMaster.FrontLaserLength;
         BackLaserLength = localMaster.BackLaserLength;
+
+        _effectiveFrontLaserLength = localMaster._effectiveFrontLaserLength;
+        _effectiveBackLaserLength = localMaster._effectiveBackLaserLength;
 
         transform.rotation = localMaster.transform.rotation;
     }
